@@ -1,16 +1,47 @@
 /* Header */
-header {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #d2b48c, #f5f5dc); /* smooth blend */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);                    /* soft shadow */
-  border-bottom: 2px solid #c19a6b;                         /* subtle divider */
+/* Reset default margins */
+html, body {
+  margin: 0;
+  padding: 0;
 }
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between; /* text left, photo right */
+  align-items: center;
+  width: 100%;                    /* full width */
+  padding: 5px 5px;             /* reduced vertical padding */
+  background: linear-gradient(to bottom, #d2b48c, #f5f5dc);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-bottom: 2px solid #c19a6b;
+}
+
+
+.header-text {
+  text-align: left;
+  margin-left: 60px;              /* optional: nudge text inward */
+}
+
+.profile-photo {
+  width: 200px;                   /* good size */
+  height: 200px;
+  border-radius: 50%;             /* keep circular */
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  position: relative;             /* allow movement */
+  top: 70px;                      /* push down to overlap header/body line */
+  right: 50px;                    /* move inward toward center */
+  z-index: 2;                     /* keep photo above header border */
+}
+
+
+
 
 header h1 {
   margin: 0;
   font-size: 2.4rem;
-  font-family: 'Merriweather', serif;                       /* elegant font */
+  font-family: 'Merriweather', serif;
   color: #3e2f1c;
 }
 
@@ -20,6 +51,7 @@ header h2 {
   font-weight: 300;
   color: #5c4033;
 }
+
 
 /* Two-column container */
 .container {
@@ -67,4 +99,31 @@ section p, section li {
 section ul {
   padding-left: 20px;
   list-style-type: square;
+}
+
+footer {
+  max-width: 1200px;   /* match header & body */
+  margin: 0 auto;      /* center horizontally */
+  padding: 20px;
+  text-align: center;
+}
+header, .container, footer {
+  max-width: none;   /* allow full width */
+  margin: 0;         /* remove centering */
+}
+.freedom-growth {
+  background-color: #fff8e7;       /* soft warm background */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+.freedom-growth h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 2px solid #a67c52;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  color: #3e2f1c;
 }
