@@ -1,129 +1,142 @@
-/* Header */
-/* Reset default margins */
+/* Reset */
 html, body {
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
+  color: #f5f5f5; /* default text color */
+}
+
+/* Background */
+body {
+  background: url("background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);   /* dark overlay */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1;
 }
 
 /* Header */
 header {
   display: flex;
-  justify-content: space-between; /* text left, photo right */
+  justify-content: space-between;
   align-items: center;
-  width: 100%;                    /* full width */
-  padding: 5px 5px;             /* reduced vertical padding */
-  background: linear-gradient(to bottom, #d2b48c, #f5f5dc);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-bottom: 2px solid #c19a6b;
+  width: 100%;
+  padding: 10px 30px;
+  background: rgba(0, 0, 0, 0.4);   /* frosted glass */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  z-index: 3;
 }
-
-
 .header-text {
-  text-align: left;
-  margin-left: 60px;              /* optional: nudge text inward */
+  margin-left: 120px;
+  text-align: center;
 }
-
-.profile-photo {
-  width: 200px;                   /* good size */
-  height: 200px;
-  border-radius: 50%;             /* keep circular */
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  position: relative;             /* allow movement */
-  top: 70px;                      /* push down to overlap header/body line */
-  right: 50px;                    /* move inward toward center */
-  z-index: 2;                     /* keep photo above header border */
-}
-
-
-
-
 header h1 {
   margin: 0;
   font-size: 2.4rem;
   font-family: 'Merriweather', serif;
-  color: #3e2f1c;
 }
-
 header h2 {
   margin-top: 6px;
   font-size: 1.2rem;
   font-weight: 300;
-  color: #5c4033;
+  color: #ddd;
 }
 
+/* Profile photo */
+.profile-photo {
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 9999; /* above everything */
+}
 
-/* Two-column container */
+/* Layout */
 .container {
   display: flex;
   max-width: 1200px;
-  margin: 20px auto;   /* smaller gap below header */
+  margin: 20px auto;
   padding: 20px;
   gap: 30px;
+  background: rgba(255, 255, 255, 0.15); /* frosted glass */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
-/* Sidebar (left column) */
-.sidebar {
-  flex: 1;
-  background-color: #f0e0c6;   /* softer light brown */
-  padding: 25px;
+.sidebar,
+.main-content,
+.freedom-growth {
+  background: transparent;
+  box-shadow: none;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
+  padding: 0;        /* remove extra padding */
+  margin-top: 0;     /* align with other sections */
 }
 
-/* Main content (right column) */
-.main-content {
-  flex: 2;
-  background-color: #fffdf5;   /* very light cream */
-  padding: 35px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
-}
 
 /* Section headings */
-section h3 {
+section h3,
+.freedom-growth h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  border-bottom: 2px solid #a67c52; /* warm brown underline */
+  border-bottom: 2px solid rgba(255,255,255,0.3);
   padding-bottom: 8px;
   margin-bottom: 20px;
-  color: #3e2f1c;
 }
 
-/* Paragraphs and lists */
-section p, section li {
+/* Text */
+section p,
+section li {
   margin-bottom: 12px;
   font-size: 1rem;
 }
-
-/* Lists */
 section ul {
   padding-left: 20px;
   list-style-type: square;
 }
 
+/* Footer */
 footer {
-  max-width: 1200px;   /* match header & body */
-  margin: 0 auto;      /* center horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   text-align: center;
 }
-header, .container, footer {
-  max-width: none;   /* allow full width */
-  margin: 0;         /* remove centering */
+
+/* Ensure content stays under profile photo */
+header,
+.container,
+.sidebar,
+.main-content,
+.freedom-growth,
+footer {
+  position: relative;
+  z-index: 1;
 }
-.freedom-growth {
-  background-color: #fff8e7;       /* soft warm background */
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-top: 30px;
+a {
+  color: #4682B4;        /* steel blue */
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.freedom-growth h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  border-bottom: 2px solid #a67c52;
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-  color: #3e2f1c;
+a:hover {
+  color: #ffffff;        /* white on hover */
+  text-decoration: underline;
 }
+
+
