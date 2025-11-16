@@ -54,7 +54,7 @@ header h2 {
 }
 
 .profile-photo {
-  position: fixed;           /* relative to viewport */
+  position: absolute;           /* relative to viewport */
   top: 20px;                 /* distance from top of page */
   right: 40px;               /* distance from right edge */
   width: 150px;
