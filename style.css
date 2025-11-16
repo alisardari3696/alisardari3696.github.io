@@ -138,5 +138,52 @@ a:hover {
   color: #ffffff;        /* white on hover */
   text-decoration: underline;
 }
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;   /* stack sidebar and main content */
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .sidebar, .main-content {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .header-text {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header h2 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .profile-photo {
+    position: static;     /* remove absolute positioning */
+    display: block;
+    margin: 15px auto;    /* center on mobile */
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (max-width: 768px) {
+  section p, section li {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}
 
 
