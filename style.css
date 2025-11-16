@@ -27,9 +27,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  flex-wrap: wrap; /* allows wrapping if space is tight */
   padding: 10px 30px;
-  background: rgba(0, 0, 0, 0.4);   /* frosted glass */
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -54,15 +54,13 @@ header h2 {
 
 /* Profile photo */
 .profile-photo {
-  position: absolute;
-  top: 20px;
-  right: 60px;
-  width: 200px;
-  height: 200px;
+  position: relative;   /* no absolute positioning */
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  z-index: 9999; /* above everything */
+  margin-left: auto;    /* push to the right in flexbox */
 }
 
 /* Layout */
@@ -183,6 +181,22 @@ a:hover {
   footer {
     font-size: 0.9rem;
     padding: 15px;
+  }
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;   /* stack text and photo */
+    text-align: center;
+  }
+
+  .profile-photo {
+    margin: 15px auto;        /* center photo */
+    width: 120px;
+    height: 120px;
+  }
+
+  .header-text {
+    margin-left: 0;
   }
 }
 
