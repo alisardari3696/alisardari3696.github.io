@@ -75,7 +75,9 @@ header h2 {
   padding: 20px;
   gap: 30px;
   background: rgba(255, 255, 255, 0.15); /* frosted glass */
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);  git add style.css
+  git commit -m "Add/update style.css"
+  git push origin main
   -webkit-backdrop-filter: blur(8px);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -181,9 +183,11 @@ a:hover {
 /* Blog elements: use site background + frosted glass (match homepage container) */
 .blog-wrap{
   max-width: 1200px;
-  margin: 80px auto; /* moved content further from header */
+  margin: 80px auto;
   padding: 0 18px;
 }
+
+/* hero */
 .blog-hero{
   display:flex;
   justify-content:space-between;
@@ -191,15 +195,26 @@ a:hover {
   gap:12px;
   margin-bottom:18px;
 }
+.blog-hero .hero-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: inherit;
+}
+.blog-hero .hero-desc {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+}
+
+/* grid & cards (already present but keep safe defaults) */
 .blog-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
   gap:16px;
 }
-
-/* frosted card similar to .container */
 .blog-card{
-  background: rgba(255,255,255,0.08); /* subtle translucent light over dark background */
+  background: rgba(255,255,255,0.08);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding:14px;
@@ -208,12 +223,40 @@ a:hover {
   box-shadow:0 6px 18px rgba(0,0,0,0.25);
   color: inherit;
 }
+.blog-card h4 { margin:0 0 6px 0; }
+.blog-card p { margin:0; color:rgba(255,255,255,0.85); }
+.meta{ color:rgba(255,255,255,0.70); font-size:0.9rem; margin-bottom:8px; }
 
-/* small tweaks */
-.blog-card h4{margin:0 0 6px 0}
-.blog-card p{margin:0;color:rgba(255,255,255,0.85)}
-.meta{color:rgba(255,255,255,0.70);font-size:0.9rem;margin-bottom:8px}
+/* links inside cards */
+.blog-card a {
+  color: inherit;
+  text-decoration: none;
+}
+.blog-card a:hover,
+.blog-card a:focus {
+  text-decoration: none;
+  color: inherit;
+}
 
+/* simple button used on blog (if any) */
+.btn {
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:8px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-weight:600;
+}
+.btn:hover,
+.btn:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+  text-decoration: none;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;   /* stack sidebar and main content */
