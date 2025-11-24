@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Testing Machine Learning on EUR/USD — Ali Abbasi Sardari</title>
+  <meta name="description" content="I collected 10 years of EUR/USD daily price history and tested labeling strategies, Random Forest training, and a walk-forward backtest — lessons and limitations documented.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="site">
+  <header>
+    <div class="header-text">
+      <h1>Ali Abbasi Sardari</h1>
+      <h2>Blog post</h2>
+    </div>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <article class="post-article">
+    <h1>My Journey Testing Machine Learning on EUR/USD</h1>
+    <div class="post-meta">Nov 24, 2025 — Ali Abbasi Sardari</div>
+
+    <h3>Step 1: Getting the Data</h3>
+    <p>I started by collecting 10 years of EUR/USD daily price history. The dataset included OHLC values and timestamps, which I cleaned and normalized in Excel and Python. This gave me a solid foundation for backtesting and feature engineering.</p>
+
+    <h3>Step 2: Option 1 — Binary Labeling</h3>
+    <p>My first attempt was a binary classification model:</p>
+    <ul>
+      <li>Up (1) if next day’s return &gt; 0%.</li>
+      <li>Down (-1) if next day’s return &lt; 0%.</li>
+    </ul>
+    <p>This approach was simple, but it produced imbalanced results: too many small moves were labeled Up or Down, and the model struggled to find meaningful patterns. Accuracy hovered around coin‑flip levels, and Neutral wasn’t considered at all.</p>
+
+    <h3>Step 3: Option 2 — Thresholded Labeling</h3>
+    <p>To improve balance, I switched to Option 2:</p>
+    <ul>
+      <li>Up (1) if next day’s return &gt; +0.3% (later increased to +0.5%).</li>
+      <li>Down (-1) if next day’s return &lt; −0.3% (later −0.5%).</li>
+      <li>Neutral (0) otherwise.</li>
+    </ul>
+    <p>This filtering reduced noise and gave the model clearer signals. It also made the dataset more balanced between Up, Down, and Neutral classes.</p>
+
+    <h3>Step 4: Random Forest Training</h3>
+    <p>I trained a Random Forest classifier using engineered features:</p>
+    <ul>
+      <li>Technical indicators: SMA, RSI, ATR, Bollinger Band position.</li>
+      <li>Volatility measures: rolling volatility, percentile rank.</li>
+      <li>Calendar features: day‑of‑week dummies.</li>
+    </ul>
+    <p>The model showed decent accuracy in train/test splits, but Neutral still dominated predictions.</p>
+
+    <h3>Step 5: Walk‑Forward Backtest</h3>
+    <p>To simulate real trading, I ran a walk‑forward backtest:</p>
+    <ul>
+      <li>Retrained the Random Forest day by day.</li>
+      <li>Predicted the next day’s move.</li>
+      <li>Only took trades when confidence ≥65%.</li>
+      <li>Logged predictions, probabilities, and outcomes.</li>
+    </ul>
+    <p>I added a progress bar to monitor the run. The test was computationally heavy — after 5 hours, the run failed before completion. No final win rate or trade statistics were produced.</p>
+
+    <h3>Lessons Learned</h3>
+    <ul>
+      <li>Daily retraining is impractical with Random Forest on 10 years of data.</li>
+      <li>Monthly or quarterly retraining would be faster and still realistic.</li>
+      <li>Price history alone gives limited edge — adding economic calendar events could improve predictive power.</li>
+      <li>Even failed runs are valuable: they highlight bottlenecks and guide the next iteration.</li>
+    </ul>
+  </article>
+
+  <footer style="margin-top:24px;text-align:center">
+    <p>© 2025 Ali Abbasi Sardari</p>
+  </footer>
+</body>
+</html>
