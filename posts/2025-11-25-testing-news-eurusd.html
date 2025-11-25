@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exploring High-Impact News and Post-News Strategy — Ali Abbasi Sardari</title>
+  <meta name="description" content="Experiments with high-impact news data, machine learning, and backtesting a post-news trading strategy.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="site">
+  <header>
+    <div class="header-text">
+      <h1>BLOG</h1>
+    </div>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <article class="post-article">
+    <h1>Exploring High-Impact News and Post-News Strategy</h1>
+    <div class="post-meta">Nov 25, 2025 — Ali Abbasi Sardari</div>
+
+    <h3>Step 1: Collecting News Data</h3>
+    <p>I focused on the economic calendar and merged EUR/USD daily price data with a binary indicator for high‑impact news events. This allowed me to isolate the days where market reactions should be strongest.</p>
+
+    <h3>Step 2: Testing Machine Learning on News</h3>
+    <p>I trained a machine learning model to see if high‑impact news could predict EUR/USD moves. The idea was to measure whether news days left a consistent footprint in returns. Unfortunately, the model didn’t find meaningful patterns — the market’s noise overwhelmed the signal.</p>
+
+    <h3>Step 3: Backtesting the Post-News Strategy</h3>
+    <p>Later in the evening, I switched to backtesting a trading strategy built around news candles:</p>
+    <ul>
+      <li>On a news day, measure the candle’s body.</li>
+      <li>Place a pending order at 25% of that body size away from the close.</li>
+      <li>Stop loss at the signal day’s high or low.</li>
+      <li>Take profit at 1.5R.</li>
+      <li>Only allow the order to trigger on the next day; cancel if not triggered.</li>
+    </ul>
+    <p>Despite repairing the dataset (open = previous close), the backtest still had bugs. Some trades that should have triggered — like the first January news day — weren’t showing up. This suggests either the dataset still has issues or the trigger logic needs refining.</p>
+
+    <h3>Lessons Learned</h3>
+    <ul>
+      <li>High‑impact news alone may not provide a clean predictive edge.</li>
+      <li>Data integrity is critical — even small errors in OHLC values can invalidate backtests.</li>
+      <li>Strategy rules must be coded carefully to match real chart behavior.</li>
+      <li>Failed attempts are still progress: they highlight what needs fixing next.</li>
+    </ul>
+  </article>
+
+  <footer style="margin-top:24px;text-align:center">
+    <p>© 2025 Ali Abbasi Sardari</p>
+  </footer>
+</body>
+</html>
