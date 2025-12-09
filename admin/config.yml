@@ -1,10 +1,12 @@
 backend:
   name: github
-  repo: your-username/your-repo   # replace with your GitHub repo
+  repo: alisardari3696/alisardari3696.github.io
   branch: main
 
-media_folder: "images/uploads"    # where uploaded images go
-public_folder: "/images/uploads"
+site_url: https://alisardari3696.netlify.app
+
+media_folder: "images/uploads"      # Folder inside repo for uploaded images
+public_folder: "/images/uploads"    # Public path for images
 
 collections:
   - name: "posts"
