@@ -1,12 +1,11 @@
 backend:
-  name: github
-  repo: alisardari3696/alisardari3696.github.io
+  name: git-gateway
   branch: main
 
 site_url: https://alisardari3696.netlify.app
 
-media_folder: "images/uploads"      # Folder inside repo for uploaded images
-public_folder: "/images/uploads"    # Public path for images
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "posts"

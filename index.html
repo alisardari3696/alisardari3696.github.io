@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ali Abbasi Sardari - Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Netlify Identity Widget for CMS authentication -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -114,5 +116,17 @@
       <a href="resume.pdf" download>Resume</a>
     </p>
   </footer>
+  <!-- Redirect to admin after Netlify Identity login -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
