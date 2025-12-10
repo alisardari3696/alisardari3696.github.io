@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blog — Ali Abbasi Sardari</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Basic pagination styling */
+    .pagination {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .pagination a {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #333;
+    }
+    .pagination a.active {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
+    .pagination a:hover {
+      background-color: #eee;
+    }
+  </style>
 </head>
 <body class="site">
   <header>
@@ -21,34 +45,68 @@
   </header>
 
   <main class="blog-wrap">
-    <section class="blog-grid" aria-label="Posts list">
-      <!-- Add or remove cards here when you add/remove files under /posts -->
-      <article class="blog-card">
-        <h4>Exploring High-Impact News and Post-News Strategy</h4>
-        <div class="meta">Nov 25, 2025</div>
-        <p>Experiments with high-impact news data, machine learning, and backtesting a post-news trading strategy.I focused on the economic calendar and merged EUR/USD daily price ...</p>
-        <a class="btn read-more" href="posts/2025-11-25-testing-news-eurusd.html">Read more</a>
-      </article>      
-      
-      <article class="blog-card">
-        <h4>My Journey Testing Machine Learning on EUR/USD</h4>
-        <div class="meta">Nov 24, 2025</div>
-        <p>I started by collecting 10 years of EUR/USD daily price history and experimented with labeling, feature engineering, and Random Forest models.</p>
-        <a class="btn read-more" href="posts/2025-11-24-testing-ml-eurusd.html">Read more</a>
-      </article>
-
-      <!-- Example template for additional posts:
-      <article class="blog-card">
-        <h4><a href="posts/YYYY-MM-DD-slug.html">Post title</a></h4>
-        <div class="meta">Date</div>
-        <p>Short excerpt of the post.</p>
-      </article>
-      -->
+    <section class="blog-grid" id="blogGrid" aria-label="Posts list">
+      <!-- Cards will be injected here by JavaScript -->
     </section>
+
+    <!-- Pagination navigation -->
+    <div class="pagination" id="pagination"></div>
   </main>
 
   <footer style="margin-top:34px;text-align:center">
     <p>© 2025 Ali Abbasi Sardari - <a href="resume.pdf" download>Resume</a></p>
   </footer>
+
+  <!-- Pagination script -->
+  <script>
+    const posts = [
+      { title: "Working with Netlify", date: "Dec 10, 2025", excerpt: "Documenting my first attempts at using Netlify to simplify publishing and the challenges faced.", link: "posts/2025-12-10-working-with-netlify.html" },
+      { title: "Exploring High-Impact News and Post-News Strategy", date: "Nov 25, 2025", excerpt: "Experiments with high-impact news data, machine learning, and backtesting a post-news trading strategy.", link: "posts/2025-11-25-testing-news-eurusd.html" },
+      { title: "My Journey Testing Machine Learning on EUR/USD", date: "Nov 24, 2025", excerpt: "I started by collecting 10 years of EUR/USD daily price history and experimented with labeling, feature engineering, and Random Forest models.", link: "posts/2025-11-24-testing-ml-eurusd.html" }
+      // Add more posts here
+    ];
+
+    const postsPerPage = 8;
+    let currentPage = 1;
+
+    function renderPosts(page) {
+      const blogGrid = document.getElementById("blogGrid");
+      blogGrid.innerHTML = "";
+      const start = (page - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      const paginatedPosts = posts.slice(start, end);
+
+      paginatedPosts.forEach(post => {
+        blogGrid.innerHTML += `
+          <article class="blog-card">
+            <h4>${post.title}</h4>
+            <div class="meta">${post.date}</div>
+            <p>${post.excerpt}</p>
+            <a class="btn read-more" href="${post.link}">Read more</a>
+          </article>
+        `;
+      });
+    }
+
+    function renderPagination() {
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+      const pageCount = Math.ceil(posts.length / postsPerPage);
+
+      for (let i = 1; i <= pageCount; i++) {
+        pagination.innerHTML += `<a href="#" onclick="goToPage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</a>`;
+      }
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderPosts(page);
+      renderPagination();
+    }
+
+    // Initial render
+    renderPosts(currentPage);
+    renderPagination();
+  </script>
 </body>
 </html>
