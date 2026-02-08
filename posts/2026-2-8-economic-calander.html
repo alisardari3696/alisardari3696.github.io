@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>economic calander backtest</title>
+  <meta name="description" content="December USD news trading backtest on EURUSD — 3-phase breakdown, SL/TP, VWAP and 1-hour confirmation.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="site">
+  <header>
+    <div class="header-text">
+      <h1>BLOG</h1>
+    </div>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+  <article class="post-article">
+    <h1>December USD News Trading Backtest – 3-Phase Breakdown</h1>
+    <div class="post-meta">Feb 8, 2026 — Ali Abbasi Sardari</div>
+
+    <h2>Overview</h2>
+    <p>I backtested USD high-impact economic news releases on EURUSD during December, using a news-driven strategy filtered by VWAP. The objective was to evaluate whether the strategy has an edge, the impact of fixed Stop Loss / Take Profit, and how different SL/TP distances affect performance. All results include real trading costs (spread + commission).</p>
+
+    <h2>Trading Rules (Same for All Phases)</h2>
+    <p>These rules were identical across all three phases:</p>
+    <ul>
+      <li>High-impact USD news only (employment, inflation, PMI, GDP, etc.)</li>
+      <li>1-hour candle confirmation — wait for the 1-hour candle to close after the news</li>
+      <li>No immediate entries during volatility spikes</li>
+      <li>VWAP direction filter — trades only in the direction of VWAP; no counter-VWAP trades</li>
+      <li>Entry executed after 1-hour close if price and VWAP aligned (direction based on news result + VWAP bias)</li>
+      <li>Manual trade management: if TP or SL not hit, trades closed before daily rollover; if a 1-hour candle closed opposite VWAP, trade closed; no overnight trades</li>
+    </ul>
+
+    <h2>Phase 1 – No Fixed SL / TP (Manual Exits)</h2>
+    <p><strong>Setup:</strong> No fixed stop or target; trades managed manually using VWAP and price behavior.</p>
+    <p><strong>Results:</strong></p>
+    <ul>
+      <li>Net result: +15.5 pips</li>
+      <li>Win rate: ~64%</li>
+      <li>Large losses occurred; high drawdown and inconsistent outcomes</li>
+    </ul>
+    <p><strong>Observation:</strong> Large losing trades erased multiple winning trades.</p>
+
+    <h2>Phase 2 – Fixed SL = 15 pips / TP = 20 pips</h2>
+    <p><strong>What changed:</strong> Fixed risk management added (SL = 15 pips, TP = 20 pips). All other rules unchanged.</p>
+    <p><strong>Results:</strong></p>
+    <ul>
+      <li>Net result: +23.8 pips</li>
+      <li>Maximum loss capped at −15 pips</li>
+      <li>Improved stability and consistency</li>
+    </ul>
+    <p><strong>Observation:</strong> Risk control alone improved performance.</p>
+
+    <h2>Phase 3 – Fixed SL = 15 pips / TP = 15 pips</h2>
+    <p><strong>What changed (vs Phase 2):</strong> Only the TP distance was reduced to 15 pips; SL remained 15 pips. Same entries, same timing, same management rules.</p>
+    <p><strong>Results:</strong></p>
+    <ul>
+      <li>Net result: +40.0 pips</li>
+      <li>Same win rate</li>
+      <li>Lower drawdown</li>
+      <li>More trades completed within session range</li>
+    </ul>
+    <p><strong>Why Phase 3 worked better (interpretation):</strong> SL and TP matched closer to the 1-hour ATR. Most post-news moves complete within one hour; price often loses momentum or consolidates after the initial reaction. Matching SL/TP to real post-news volatility improved execution and consistency.</p>
+
+    <h2>Performance Comparison — Net Pips (December, after fees)</h2>
+    <pre style="white-space:pre-wrap">Phase 1  | +15.5
+Phase 2  | +23.8
+Phase 3  | +40.0</pre>
+
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li>Waiting for the 1-hour candle close reduced noise</li>
+      <li>VWAP alignment filtered low-quality setups</li>
+      <li>Fixed SL reduced drawdown immediately</li>
+      <li>TP placement must match volatility</li>
+      <li>Most news moves respect the 1-hour ATR</li>
+      <li>Execution discipline is critical</li>
+    </ul>
+
+    <h2>Final Conclusion</h2>
+    <p>The most effective setup in December was: high-impact USD news, 1-hour candle confirmation, VWAP-aligned entries, SL = 15 pips / TP = 15 pips, and no overnight trades. This configuration aligned best with post-news market behavior and produced the strongest results.</p>
+  </article>
